@@ -3,11 +3,11 @@ import Card from '../Card';
 import Button from '../Button';
 import styles from './EmergencyPanel.module.css';
 import Modal from '../Modal';
-import { useHaloStore } from '../../store/useHaloStore';
+// import { useHaloStore } from '../../store/useHaloStore';
 
 export default function EmergencyPanel() {
     const [showModal, setShowModal] = useState(false);
-    const { disconnectWallet } = useHaloStore();
+    // const { disconnectWallet } = useHaloStore();
 
     const handleDeLeverage = () => {
         // In a real app this would trigger the flash loan tx

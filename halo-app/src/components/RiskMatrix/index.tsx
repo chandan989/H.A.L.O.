@@ -1,4 +1,4 @@
-import Card from '../Card';
+// import Card from '../Card';
 import UILabel from '../UILabel';
 import styles from './RiskMatrix.module.css';
 import { useHaloStore } from '../../store/useHaloStore';

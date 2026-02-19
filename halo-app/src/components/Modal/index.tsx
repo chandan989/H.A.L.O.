@@ -1,14 +1,14 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import Card from '../Card';
 import styles from './Modal.module.css';
-import { clsx } from 'clsx';
+// import { clsx } from 'clsx';
 
 interface ModalProps {
     children: ReactNode;
     onClose: () => void;
 }
 
-export default function Modal({ children, onClose }: ModalProps) {
+export default function Modal({ children }: ModalProps) {
     return (
         <div className={styles.overlay}>
             <Card className={styles.modal}>

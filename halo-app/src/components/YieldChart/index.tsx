@@ -47,7 +47,7 @@ export default function YieldChart() {
                                 fontFamily: 'var(--font-data)'
                             }}
                             itemStyle={{ color: 'var(--accent)' }}
-                            formatter={(value: number) => [`$${value.toFixed(2)}`, 'Yield']}
+                            formatter={(value: number | undefined) => [`$${value?.toFixed(2) ?? '0.00'}`, 'Yield']}
                             labelStyle={{ color: 'var(--muted)', marginBottom: '4px' }}
                         />
                         <Area
