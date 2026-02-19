@@ -1,0 +1,110 @@
+.container {
+    padding: 0 !important;
+    /* Override Card padding to handle full bleed footer */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titleGroup {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.bnbIcon {
+    width: 32px;
+    height: 32px;
+    background: #F3BA2F;
+    border-radius: 50%;
+}
+
+.title {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    border-radius: var(--r-elem);
+}
+
+.statusDot {
+    width: 8px;
+    height: 8px;
+    background: var(--positive);
+    border-radius: 50%;
+}
+
+.statusText {
+    color: var(--text);
+}
+
+.divider {
+    height: 1px;
+    background: var(--border);
+    width: 100%;
+}
+
+.dataRow {
+    display: flex;
+    flex: 1;
+}
+
+.dataCol {
+    flex: 1;
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dataCol:first-child {
+    border-right: 1px solid var(--border);
+}
+
+.metric {
+    font-family: var(--font-data);
+    font-size: 56px;
+    line-height: 1;
+    margin-top: 16px;
+}
+
+.positive {
+    color: var(--positive);
+}
+
+.footer {
+    height: 64px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: var(--void);
+}
+
+.netApyLabel {
+    font-family: var(--font-data);
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.netApyValue {
+    font-family: var(--font-data);
+    font-weight: 700;
+    font-size: 24px;
+}

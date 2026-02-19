@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halo Vault | Stark Precision</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* 1.1 Strict Color Palette & CSS Variables */
+        :root {
+            --halo-yellow: #FFD600;
+            --solid-black: #0A0A0A;
+            --base-white: #FFFFFF;
+            --drafting-gray: #E5E5E5;
+            --ink-black: #0A0A0A;
+            --steel-gray: #737373;
+            --positive-yield: #00E676;
+            --alert-negative: #FF1744;
+
+            /* 2. Geometry & Spacing */
+            --grid-size: 120px;
+            --radius-card: 16px;
+            --radius-inner: 4px;
+        }
+
+        /* 4. Layout & The "Blueprint" Background */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--base-white);
+            color: var(--ink-black);
+            font-family: 'Space Grotesk', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 64px 24px;
+
+            /* Blueprint Grid Overlay */
+            background-image:
+                linear-gradient(var(--drafting-gray) 1px, transparent 1px),
+                linear-gradient(90deg, var(--drafting-gray) 1px, transparent 1px);
+            background-size: var(--grid-size) var(--grid-size);
+            background-position: center top;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Diagonal Accents (Blueprint construction lines) */
+        .blueprint-accents {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .accent-line {
+            position: absolute;
+            background-color: var(--drafting-gray);
+            height: 1px;
+            width: 300px;
+        }
+
+        .accent-tl { top: 60px; left: -60px; transform: rotate(45deg); }
+        .accent-tr { top: 60px; right: -60px; transform: rotate(-45deg); }
+        .accent-bl { bottom: 60px; left: -60px; transform: rotate(-45deg); }
+        .accent-br { bottom: 60px; right: -60px; transform: rotate(45deg); }
+
+        /* 1.2 Typography System */
+        h1 {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: -0.02em; /* -2% tracking */
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: -0.01em; /* -1% tracking */
+            margin-bottom: 24px;
+        }
+
+        .ui-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em; /* +4% tracking */
+            color: var(--steel-gray);
+        }
+
+        .mono-data {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .hero-metric {
+            font-size: 56px;
+            font-weight: 400;
+            color: var(--ink-black);
+        }
+
+        .standard-metric {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--ink-black);
+            margin-top: 8px;
+        }
+
+        /* Layout Container */
+        .container {
+            width: 100%;
+            max-width: 540px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            z-index: 1;
+        }
+
+        .header-section {
+            text-align: center;
+            background: var(--base-white);
+            padding: 16px;
+            border: 1px solid var(--drafting-gray);
+            border-radius: var(--radius-inner);
+        }
+
+        /* 3.2 The Halo Vault Card */
+        .vault-card {
+            background-color: var(--base-white);
+            border: 1px solid var(--drafting-gray);
+            border-radius: var(--radius-card);
+            overflow: hidden; /* Contains the bottom yellow block */
+            box-shadow: none; /* Zero shadows */
+        }
+
+        .card-header {
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--drafting-gray);
+        }
+
+        .token-pair {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .token-icon-placeholder {
+            width: 24px;
+            height: 24px;
+            background-color: var(--solid-black);
+            border-radius: 50%;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--positive-yield);
+            border-radius: 50%;
+        }
+
+        .card-data {
+            display: flex;
+        }
+
+        .data-half {
+            flex: 1;
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .data-half:first-child {
+            border-right: 1px solid var(--drafting-gray);
+        }
+
+        .card-footer {
+            background-color: var(--halo-yellow);
+            padding: 24px;
+            text-align: center;
+            border-top: 1px solid var(--solid-black); /* Added for stark contrast against white */
+        }
+
+        .card-footer .ui-label {
+            color: var(--ink-black);
+        }
+
+        /* 3.3 Forms & Inputs */
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        input {
+            flex: 1;
+            height: 56px;
+            background-color: var(--base-white);
+            border: 1px solid var(--drafting-gray);
+            border-radius: var(--radius-inner);
+            padding: 0 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 18px;
+            color: var(--ink-black);
+            outline: none;
+            transition: border 0s; /* Instant snap, no fading */
+        }
+
+        input:focus {
+            border: 2px solid var(--solid-black);
+            padding: 0 15px; /* Adjust padding to prevent layout shift from border increase */
+        }
+
+        /* 3.1 Buttons */
+        button {
+            height: 56px;
+            padding: 0 32px;
+            border-radius: var(--radius-inner);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0s, color 0s, border 0s; /* Instant stark flip */
+        }
+
+        .btn-primary {
+            background-color: var(--halo-yellow);
+            color: var(--solid-black);
+            border: 0px;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--solid-black);
+            color: var(--halo-yellow);
+        }
+
+        .btn-primary:disabled {
+            background-color: var(--drafting-gray);
+            color: var(--steel-gray);
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background-color: var(--base-white);
+            color: var(--solid-black);
+            border: 1px solid var(--drafting-gray);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--solid-black);
+            color: var(--base-white);
+            border: 1px solid var(--solid-black);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="blueprint-accents">
+        <div class="accent-line accent-tl"></div>
+        <div class="accent-line accent-tr"></div>
+        <div class="accent-line accent-bl"></div>
+        <div class="accent-line accent-br"></div>
+    </div>
+
+    <div class="container">
+        <div class="header-section">
+            <h1>Halo Vault</h1>
+            <p class="ui-label mono-data">Autonomous Algorithmic Strategy</p>
+        </div>
+
+        <div class="vault-card">
+
+            <div class="card-header">
+                <div class="token-pair">
+                    <div class="token-icon-placeholder"></div>
+                    <h2>BNB + AsterDEX</h2>
+                </div>
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span class="ui-label" style="color: var(--ink-black);">ACTIVE</span>
+                </div>
+            </div>
+
+            <div class="card-data">
+                <div class="data-half">
+                    <span class="ui-label">ASTERDEX STAKING</span>
+                    <span class="standard-metric mono-data">4.20%</span>
+                </div>
+                <div class="data-half">
+                    <span class="ui-label">SHORT FUNDING</span>
+                    <span class="standard-metric mono-data">12.80%</span>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <span class="ui-label">NET APY: </span>
+                <span class="hero-metric mono-data">17.00%</span>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="input-group">
+                <input type="text" placeholder="0.00" class="mono-data">
+                <button class="btn-secondary">MAX</button>
+            </div>
+            <button class="btn-primary">DEPOSIT BNB</button>
+        </div>
+    </div>
+
+</body>
+</html>

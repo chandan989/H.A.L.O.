@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+}
+
+.tab {
+    flex: 1;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 16px;
+    font-family: var(--font-ui);
+    font-size: 14px;
+    color: var(--muted);
+    transition-duration: 0s;
+}
+
+.activeTab {
+    font-weight: 700;
+    border-bottom-color: var(--accent);
+    color: var(--text);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.estimate {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.estimateValue {
+    font-family: var(--font-data);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.positive {
+    color: var(--positive);
+}

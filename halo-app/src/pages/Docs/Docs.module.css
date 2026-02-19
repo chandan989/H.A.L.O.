@@ -1,0 +1,83 @@
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 24px;
+}
+
+.section {
+    margin-bottom: 64px;
+}
+
+.title {
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    color: var(--void);
+}
+
+.text {
+    font-family: var(--font-ui);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 32px;
+}
+
+.codeBlock {
+    background: var(--void);
+    color: var(--accent);
+    border-radius: var(--r-card);
+    padding: 32px;
+    font-family: var(--font-data);
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre;
+    overflow-x: auto;
+    margin-bottom: 24px;
+}
+
+.tableWrapper {
+    border: 1px solid var(--border);
+    border-radius: var(--r-card);
+    overflow: hidden;
+    margin-bottom: 24px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-ui);
+}
+
+.table th,
+.table td {
+    padding: 16px 24px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.table th {
+    font-weight: 700;
+    color: var(--muted);
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.list {
+    list-style-type: disc;
+    padding-left: 24px;
+    color: var(--muted);
+    font-family: var(--font-ui);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.list li {
+    margin-bottom: 8px;
+}

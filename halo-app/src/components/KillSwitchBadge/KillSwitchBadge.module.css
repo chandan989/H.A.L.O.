@@ -1,0 +1,20 @@
+.badge {
+    height: 64px;
+    border-radius: var(--r-elem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-data);
+    font-size: 18px;
+    width: 100%;
+}
+
+.dormant {
+    background: var(--void);
+    color: var(--accent);
+}
+
+.active {
+    background: var(--danger);
+    color: #fff;
+}
