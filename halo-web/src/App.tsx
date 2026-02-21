@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
+import PitchDeck from "./pages/PitchDeck";
 
 import { createWeb3Modal } from '@web3modal/wagmi/react';
 import { State, WagmiProvider } from 'wagmi';
@@ -29,6 +30,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/pitch" element={<PitchDeck />} />
             <Route path="/app" element={<Dashboard />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

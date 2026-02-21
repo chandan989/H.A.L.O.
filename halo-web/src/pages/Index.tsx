@@ -18,6 +18,10 @@ const Index = () => {
             <span className="font-black text-sm tracking-tight-custom">H.A.L.O.</span>
           </div>
           <nav className="hidden md:flex items-center gap-6 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            <Link to="/pitch" className="hover:text-foreground transition-colors group flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary/50 group-hover:bg-primary transition-colors"></span>
+              Pitch Deck
+            </Link>
             <a href="#how-it-works" className="hover:text-foreground transition-colors">Mechanism</a>
             <a href="#faq" className="hover:text-foreground transition-colors">Risks</a>
           </nav>
