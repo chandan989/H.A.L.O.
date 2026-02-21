@@ -7,27 +7,31 @@ interface VaultState {
   stakingApy: number;
   fundingApy: number;
   riskScore: string;
-  
+
   // User position
   userDeposit: number;
   userPnl: number;
   userNetWorth: number;
-  
+
   // Risk metrics
   collateralRatio: number;
   oracleSpread: number;
   pegHealth: number;
-  
+
   // Simulation
   simulationMode: boolean;
   simulatedPriceDrop: number;
-  
+  simulatedNegativeFunding: boolean;
+  simulatedDepeg: number;
+
   // PnL history
   pnlHistory: { date: string; pnl: number; staking: number; funding: number }[];
-  
+
   // Actions
   setSimulationMode: (enabled: boolean) => void;
   setSimulatedPriceDrop: (drop: number) => void;
+  setSimulatedNegativeFunding: (enabled: boolean) => void;
+  setSimulatedDepeg: (drop: number) => void;
   deposit: (amount: number) => void;
   withdraw: (amount: number) => void;
 }
@@ -57,28 +61,32 @@ export const useVaultStore = create<VaultState>((set) => ({
   stakingApy: 4.2,
   fundingApy: 14.2,
   riskScore: 'LOW',
-  
+
   userDeposit: 12.5,
   userPnl: 0.847,
   userNetWorth: 13.347,
-  
+
   collateralRatio: 215,
   oracleSpread: 0.12,
   pegHealth: 99.87,
-  
+
   simulationMode: false,
   simulatedPriceDrop: 50,
-  
+  simulatedNegativeFunding: false,
+  simulatedDepeg: 0,
+
   pnlHistory: generatePnlHistory(),
-  
+
   setSimulationMode: (enabled) => set({ simulationMode: enabled }),
   setSimulatedPriceDrop: (drop) => set({ simulatedPriceDrop: drop }),
-  
+  setSimulatedNegativeFunding: (enabled) => set({ simulatedNegativeFunding: enabled }),
+  setSimulatedDepeg: (drop) => set({ simulatedDepeg: drop }),
+
   deposit: (amount) => set((state) => ({
     userDeposit: state.userDeposit + amount,
     userNetWorth: state.userNetWorth + amount,
   })),
-  
+
   withdraw: (amount) => set((state) => ({
     userDeposit: Math.max(0, state.userDeposit - amount),
     userNetWorth: Math.max(0, state.userNetWorth - amount),

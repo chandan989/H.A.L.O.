@@ -139,7 +139,7 @@ if (pegRatio < MIN_PEG_RATIO) {          // 0.98 (2% de-peg threshold)
 }
 ```
 
-When triggered, the vault immediately closes the short, unlocks collateral, and retreats to safety mode. This is not a manual override — it is encoded defense logic.
+When triggered, the vault immediately closes the short, unlocks collateral, and retreats to safety mode. This is not a manual override — it is encoded defense logic. *(Note: This behavior can be simulated interactively in the Dashboard's Stress Test module).*
 
 ---
 
@@ -191,7 +191,7 @@ IF FundingRate < -0.05% FOR 3 consecutive days:
     4. Resume when conditions normalize
 ```
 
-The system adapts to market conditions. It is designed to be **smart, not just automated**.
+The system adapts to market conditions. It is designed to be **smart, not just automated**. *(Note: This dynamic parameter adjustment and "Halt" state can be visualized in the Dashboard's Risk Engine).*
 
 ---
 
